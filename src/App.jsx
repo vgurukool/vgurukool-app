@@ -154,7 +154,7 @@ const COURSES = [
     description: 'Comprehensive study of all 18 chapters structured into 5-verse interactive micro-lessons with authentic pronunciation, transliteration, English/Hindi commentary, and chapter exit quizzes.',
     duration: '18 Weeks • 182 Activities',
     instructor: 'Rajni',
-    launchUrl: 'https://learnhouse.vgurukool.com/orgs/default/courses/course_7f895b1e-2123-420a-ac53-1326bfef3b50',
+    launchUrl: 'https://learnhouse.vgurukool.com/course/course_7f895b1e-2123-420a-ac53-1326bfef3b50',
     actionText: 'Enter Course on LearnHouse'
   },
   {
@@ -505,7 +505,7 @@ export default function App({ keycloak, authenticated = false }) {
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
             <a
-              href="https://learnhouse.vgurukool.com/orgs/default/courses/course_7f895b1e-2123-420a-ac53-1326bfef3b50"
+              href="https://learnhouse.vgurukool.com/course/course_7f895b1e-2123-420a-ac53-1326bfef3b50"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-extrabold text-sm shadow-lg shadow-orange-500/25 transition"
