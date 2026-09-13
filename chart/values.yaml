@@ -104,3 +104,9 @@ env:
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+topologySpread:
+  enabled: true
+  maxSkew: 1
+  whenUnsatisfiable: ScheduleAnyway
+
