@@ -39,7 +39,7 @@ const LAKSHMI_APPS = [
     borderColor: 'rgba(16, 185, 129, 0.25)',
     status: 'Live App',
     statusColor: '#10B981',
-    url: 'https://dhana-lakshmi.vgurukool.com'
+    url: 'https://dhana-lakshmi.vgurukool.com/'
   },
   {
     id: 'dhanya',
@@ -53,7 +53,7 @@ const LAKSHMI_APPS = [
     borderColor: 'rgba(245, 158, 11, 0.25)',
     status: 'Live App',
     statusColor: '#10B981',
-    url: 'https://dhanya-lakshmi.vgurukool.com'
+    url: 'https://dhanya-lakshmi.vgurukool.com/'
   },
   {
     id: 'gaja',
@@ -67,7 +67,7 @@ const LAKSHMI_APPS = [
     borderColor: 'rgba(139, 92, 246, 0.25)',
     status: 'Live App',
     statusColor: '#10B981',
-    url: 'https://gaja-lakshmi.vgurukool.com'
+    url: 'https://gaja-lakshmi.vgurukool.com/'
   },
   {
     id: 'vidya',
@@ -81,7 +81,7 @@ const LAKSHMI_APPS = [
     borderColor: 'rgba(56, 189, 248, 0.25)',
     status: 'Live App',
     statusColor: '#10B981',
-    url: 'https://vidya-lakshmi.vgurukool.com'
+    url: 'https://vidya-lakshmi.vgurukool.com/'
   },
   {
     id: 'adi',
@@ -401,9 +401,9 @@ export default function App({ keycloak, authenticated = false }) {
 
               <div className="pt-4">
                 <a
-                  href="https://ashta-lakshmi.vgurukool.com"
+                  href="https://ashta-lakshmi.vgurukool.com/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener"
                   className="inline-flex items-center space-x-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-extrabold text-sm shadow-lg shadow-emerald-500/20 transition"
                 >
                   <span>Launch Ashta Lakshmi Assessment Portal</span>
@@ -613,7 +613,7 @@ export default function App({ keycloak, authenticated = false }) {
                     <a
                       href={app.url}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener"
                       className="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs flex items-center justify-center space-x-1.5 transition"
                     >
                       <span>Launch {app.name}</span>
