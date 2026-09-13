@@ -646,7 +646,7 @@ export default function App({ keycloak, authenticated = false }) {
             <span>Ancient Wisdom &amp; Modern Innovation</span>
           </div>
           <div className="flex items-center space-x-6">
-            <a href="https://ashta-lakshmi.vgurukool.com" target="_blank" rel="noreferrer" className="hover:text-slate-300">Ashta Lakshmi Assessment</a>
+            <a href="https://ashta-lakshmi.vgurukool.com/" target="_blank" rel="noopener" className="hover:text-slate-300">Ashta Lakshmi Assessment</a>
             <a href="https://learnhouse.vgurukool.com" target="_blank" rel="noreferrer" className="hover:text-slate-300">LearnHouse LMS</a>
             <a href="https://platform.vgurukool.com/keycloak" target="_blank" rel="noreferrer" className="hover:text-slate-300">Keycloak IAM</a>
           </div>
