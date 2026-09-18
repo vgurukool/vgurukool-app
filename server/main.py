@@ -32,8 +32,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DIST_DIR = BASE_DIR / "dist"
 
 LITELLM_URL = os.getenv("LITELLM_BASE_URL", "http://litellm.litellm.svc.cluster.local:4000/v1/chat/completions")
-LITELLM_API_KEY = os.getenv("LITELLM_API_KEY", "sk-litellm-vgurukool-master-2026")
+LITELLM_API_KEY = os.getenv("LITELLM_API_KEY", "")
 LITELLM_MODEL = os.getenv("LITELLM_MODEL", "gemini-2.5-flash")
+
 
 class ChatMessage(BaseModel):
     sender: str
