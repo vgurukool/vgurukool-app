@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Ashta Lakshmi Wealth Assessment Lifecycle",
+    "output": "diagrams/5_vgurukool_lifecycle.html",
+    "viewBox": [980, 680],
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "evaluation-rail",
+        "label": "Evaluation Rail",
+        "focus": ["not_started", "evaluating", "mandala", "reviewing", "balanced"],
+        "note": "Follow learner progression from questionnaire to balanced holistic wealth."
+      },
+      {
+        "id": "counselor-interventions",
+        "label": "Counselor & Deficit Interventions",
+        "focus": ["mandala", "deficit_hold", "recalibrating", "stagnant", "unresolved"],
+        "note": "Examine pause, guidance, and resolution states for under-developed dimensions."
+      }
+    ]
+  },
+  "lanes": [
+    { "id": "main", "label": "Assessment phases" },
+    { "id": "waiting", "label": "Deficit pause + guidance" },
+    { "id": "recovery", "label": "Recalibration engine" },
+    { "id": "terminal", "label": "Terminal outcomes" }
+  ],
+  "states": [
+    { "id": "not_started", "type": "start", "label": "Not Started", "sublabel": "annual baseline", "lane": "main", "col": 0, "step": "01", "tag": "entry" },
+    { "id": "evaluating", "type": "active", "label": "Scoring Pillars", "sublabel": "8 wealth dimensions", "lane": "main", "col": 1, "step": "02", "tag": "scoring" },
+    { "id": "mandala", "type": "decision", "label": "Mandala Orbit", "sublabel": "synergy simulation", "lane": "main", "col": 2, "step": "03", "tag": "harmonic" },
+    { "id": "reviewing", "type": "waiting", "label": "Action Plan", "sublabel": "mentor approval", "lane": "main", "col": 3, "step": "04", "tag": "review" },
+    { "id": "balanced", "type": "success", "label": "Persisted State", "sublabel": "sovereign ledger", "lane": "main", "col": 4, "step": "05", "tag": "recorded" },
+    { "id": "deficit_hold", "type": "waiting", "label": "Deficit Paused", "sublabel": "dimension < 35%", "lane": "waiting", "col": 0, "tag": "imbalance" },
+    { "id": "recalibrating", "type": "active", "label": "AI Counselor", "sublabel": "Brihaspati plan", "lane": "recovery", "col": 1, "tag": "actionable" },
+    { "id": "stagnant", "type": "waiting", "label": "Survey Expired", "sublabel": "inactivity timeout", "lane": "waiting", "col": 2, "tag": "dormant" },
+    { "id": "unresolved", "type": "failure", "label": "Abandoned", "sublabel": "learner opted out", "lane": "terminal", "col": 0, "tag": "terminal" },
+    { "id": "deferred", "type": "failure", "label": "Deferred Cycle", "sublabel": "rescheduled next qtr", "lane": "terminal", "col": 1, "tag": "terminal" },
+    { "id": "harmonized", "type": "success", "label": "Annual Seal", "sublabel": "milestone achieved", "lane": "terminal", "col": 2, "tag": "terminal" }
+  ],
+  "transitions": [
+    { "from": "mandala", "to": "deficit_hold", "variant": "security", "route": "straight", "fromSide": "bottom", "toSide": "top" },
+    { "from": "deficit_hold", "to": "unresolved", "variant": "security", "route": "straight", "fromSide": "bottom", "toSide": "top" },
+    { "from": "reviewing", "to": "recalibrating", "variant": "security", "route": "straight", "fromSide": "bottom", "toSide": "top" },
+    { "from": "recalibrating", "to": "deferred", "variant": "security", "route": "straight", "fromSide": "bottom", "toSide": "top" },
+    { "from": "balanced", "to": "stagnant", "variant": "dashed", "route": "straight", "fromSide": "bottom", "toSide": "top" },
+    { "from": "stagnant", "to": "harmonized", "variant": "emphasis", "route": "straight", "fromSide": "bottom", "toSide": "top" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Assessment Rail", "items": ["Learner progresses through five structured phases", "Mandala Orbit simulates reciprocal feeds and needs", "Durable snapshot commits to the sovereign ledger"] },
+    { "dot": "amber", "title": "Deficit Handling", "items": ["Any pillar below 35% pauses automatic certification", "Triggers personalized Brihaspati / Saraswati study counseling", "Requires corrective action commit before completion"] },
+    { "dot": "rose", "title": "Explicit Outcomes", "items": ["Unresolved cycles expire cleanly with audit trails", "Deferred assessments carry over to the following quarter", "Harmonized state awards sovereign verification seal"] }
+  ]
+}

@@ -4,12 +4,27 @@ Dedicated landing application and public entry point for **Vgurukool** (`https:/
 
 ---
 
-## Architecture Overview
+## Architecture & Interactive System Diagrams
+
+The Vgurukool Sovereign Platform is mapped across **5 canonical diagram types** using [Archify](https://github.com/tt-a1i/archify). Each diagram is compiled into a standalone, interactive HTML map with dark/light themes, path tracing, and PNG/SVG export capabilities:
+
+| # | Diagram Type | Interactive HTML Map | JSON Specification | Description & Scope |
+|---|---|---|---|---|
+| **1** | **Architecture** | [1_vgurukool_architecture.html](./diagrams/1_vgurukool_architecture.html) | [vgurukool.architecture.json](./diagrams/vgurukool.architecture.json) | Complete EKS cluster topology: AWS ALB, Keycloak SSO, React Portals, Incorg, LiteLLM Gateway, Google Gemini, and ArgoCD GitOps. |
+| **2** | **Workflow** | [2_vgurukool_workflow.html](./diagrams/2_vgurukool_workflow.html) | [vgurukool.workflow.json](./diagrams/vgurukool.workflow.json) | Open Banking Statement Ingestion Pipeline: Dhana Lakshmi upload, deterministic regex parsing, template learning fallback, and SQLite WAL persistence. |
+| **3** | **Sequence** | [3_vgurukool_sequence.html](./diagrams/3_vgurukool_sequence.html) | [vgurukool.sequence.json](./diagrams/vgurukool.sequence.json) | Open Banking Transaction Query Sequence: Learner navigation, Keycloak JWT verification, ALB proxy, Incorg `/accounts/{id}/transactions` query, and UI render. |
+| **4** | **Data-Flow** | [4_vgurukool_dataflow.html](./diagrams/4_vgurukool_dataflow.html) | [vgurukool.dataflow.json](./diagrams/vgurukool.dataflow.json) | AI Knowledge Pipeline & Lineage: Sacred text ingestion, FAISS dense vector store, LiteLLM proxy, and grounded AI counselor answers (*Brihaspati / Saraswati*). |
+| **5** | **Lifecycle** | [5_vgurukool_lifecycle.html](./diagrams/5_vgurukool_lifecycle.html) | [vgurukool.lifecycle.json](./diagrams/vgurukool.lifecycle.json) | Ashta Lakshmi Wealth Assessment Lifecycle: 8-pillar scoring, Mandala simulation, deficit pauses (<35%), counselor recalibration, and sovereign ledger persistence. |
+
+---
+
+## Technical Stack
 
 The app is built as a lightweight, high-performance containerized application:
 - **Frontend:** React 18, Vite, Tailwind CSS, Lucide Icons, Keycloak JS SSO.
 - **Backend:** FastAPI (Python 3.11) providing SPA static asset serving, `/api/health` probe, and `/api/ai/chat` proxying to cluster LiteLLM.
 - **Orchestration:** Helm chart deployed on AWS EKS with Nginx Ingress and automated Let's Encrypt TLS certificates via `cert-manager`.
+
 
 ---
 

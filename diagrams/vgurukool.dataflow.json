@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Vgurukool AI Knowledge Pipeline & Data Lineage",
+    "output": "diagrams/4_vgurukool_dataflow.html",
+    "viewBox": [1080, 750],
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "ingest-and-chunk",
+        "label": "Ingestion & Vectorization",
+        "focus": ["sacred_texts", "ingest_api", "doc_chunker", "faiss_index"],
+        "note": "Trace source files through deterministic chunking into dense vector embeddings."
+      },
+      {
+        "id": "rag-query",
+        "label": "RAG Query & Counselor Synthesis",
+        "focus": ["learner_prompt", "litellm_proxy", "openbanking_store", "gemini_model", "counselor_ui"],
+        "note": "Follow learner questions through dense vector similarity search to LLM synthesis."
+      }
+    ]
+  },
+  "stages": [
+    { "label": "Sources" },
+    { "label": "Ingestion" },
+    { "label": "Processing" },
+    { "label": "Store" },
+    { "label": "AI Consumers" }
+  ],
+  "nodes": [
+    { "id": "sacred_texts", "type": "external", "label": "Sacred Texts / PDFs", "sublabel": "Gita, Upanishads", "stage": 0, "row": 0, "tag": "Vedic Corpus" },
+    { "id": "learner_prompt", "type": "external", "label": "Learner Question", "sublabel": "Natural Query", "stage": 0, "row": 2, "tag": "User Input" },
+    { "id": "ingest_api", "type": "backend", "label": "Incorg API", "sublabel": "POST /documents", "stage": 1, "row": 0, "tag": "OCR / PyPDF" },
+    { "id": "litellm_proxy", "type": "backend", "label": "LiteLLM Gateway", "sublabel": "Proxy :4000", "stage": 1, "row": 2, "tag": "Model Router" },
+    { "id": "doc_chunker", "type": "backend", "label": "Semantic Chunker", "sublabel": "500-token overlap", "stage": 2, "row": 0, "tag": "Deterministic" },
+    { "id": "rag_retriever", "type": "backend", "label": "RAG Retriever", "sublabel": "Dense search", "stage": 2, "row": 2, "tag": "Vector Search" },
+    { "id": "faiss_index", "type": "database", "label": "FAISS Index", "sublabel": "768-dim vectors", "stage": 3, "row": 0, "tag": "vector db" },
+    { "id": "openbanking_store", "type": "database", "label": "OpenBanking Store", "sublabel": "SQLite WAL", "stage": 3, "row": 2, "tag": "financial facts" },
+    { "id": "gemini_model", "type": "cloud", "label": "Gemini 2.5 Flash", "sublabel": "RAG synthesis", "stage": 4, "row": 0, "tag": "1M context" },
+    { "id": "counselor_ui", "type": "frontend", "label": "AI Counselors UI", "sublabel": "Brihaspati / Saraswati", "stage": 4, "row": 1, "tag": "Grounded Answers" },
+    { "id": "dhana_ui", "type": "frontend", "label": "Dhana Lakshmi", "sublabel": "Wealth Ledger", "stage": 4, "row": 2, "tag": "Financial Metrics" }
+  ],
+  "flows": [
+    { "from": "sacred_texts", "to": "ingest_api", "label": "upload document", "variant": "emphasis", "route": "straight" },
+    { "from": "ingest_api", "to": "doc_chunker", "label": "clean text", "variant": "emphasis", "route": "straight" },
+    { "from": "doc_chunker", "to": "faiss_index", "label": "store vectors", "variant": "emphasis", "route": "straight" },
+    { "from": "learner_prompt", "to": "litellm_proxy", "label": "user query", "variant": "emphasis", "route": "straight" },
+    { "from": "litellm_proxy", "to": "rag_retriever", "label": "semantic query", "variant": "emphasis", "route": "straight" },
+    { "from": "rag_retriever", "to": "openbanking_store", "label": "match transactions", "variant": "emphasis", "route": "straight" },
+    { "from": "faiss_index", "to": "gemini_model", "label": "top-k chunks", "variant": "emphasis", "route": "straight" },
+    { "from": "gemini_model", "to": "counselor_ui", "label": "grounded answer", "variant": "emphasis", "route": "vertical-channel" },
+    { "from": "openbanking_store", "to": "dhana_ui", "label": "account facts", "variant": "emphasis", "route": "straight" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Grounded Knowledge", "items": ["Dense vector similarity retrieval in FAISS prevents LLM hallucination", "500-token semantic chunks preserve contextual continuity"] },
+    { "dot": "violet", "title": "Sovereign Ingestion", "items": ["All embeddings and raw text persisted on sovereign AWS EBS gp3 volume", "LiteLLM centrally governs multi-provider API keys and latency"] }
+  ]
+}

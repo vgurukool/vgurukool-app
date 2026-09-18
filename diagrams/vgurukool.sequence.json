@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Open Banking Transaction Query Sequence",
+    "output": "diagrams/3_vgurukool_sequence.html",
+    "viewBox": [1080, 600],
+    "column_fit": "spread",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "query-and-auth",
+        "label": "Authentication & Routing",
+        "focus": ["user", "dhana_ui", "alb", "keycloak"],
+        "note": "Verify client identity and bearer token via Keycloak SSO."
+      },
+      {
+        "id": "openbanking-fetch",
+        "label": "Open Banking Store Query",
+        "focus": ["dhana_ui", "incorg_api", "ob_store"],
+        "note": "Query OBReadTransaction6 schema payload from SQLite WAL."
+      }
+    ]
+  },
+  "participants": [
+    { "id": "user", "type": "external", "label": "Learner", "sublabel": "Browser Session" },
+    { "id": "dhana_ui", "type": "frontend", "label": "Dhana Lakshmi", "sublabel": "React 18 SPA" },
+    { "id": "keycloak", "type": "security", "label": "Keycloak SSO", "sublabel": "OIDC PKCE" },
+    { "id": "alb", "type": "cloud", "label": "AWS ALB Ingress", "sublabel": "cert-manager TLS" },
+    { "id": "incorg_api", "type": "backend", "label": "Incorg Service", "sublabel": "/open-banking/v3.1" },
+    { "id": "ob_store", "type": "database", "label": "OpenBankingStore", "sublabel": "SQLite WAL" }
+  ],
+  "segments": [
+    { "from": 150, "to": 260, "label": "Token Validation" },
+    { "from": 270, "to": 400, "label": "Open Banking v3.1 Query" },
+    { "from": 410, "to": 520, "label": "Response & Client Render" }
+  ],
+  "messages": [
+    { "id": "open-transactions", "from": "user", "to": "dhana_ui", "y": 160, "label": "Navigate to Wealth Ledger", "variant": "default" },
+    { "id": "verify-token", "from": "dhana_ui", "to": "keycloak", "y": 190, "label": "Verify JWT bearer token", "variant": "security" },
+    { "id": "token-valid", "from": "keycloak", "to": "dhana_ui", "y": 220, "label": "Claims & roles OK", "variant": "return" },
+    { "id": "call-ingress", "from": "dhana_ui", "to": "alb", "y": 250, "label": "GET /accounts/{id}/transactions", "variant": "emphasis" },
+    { "id": "route-incorg", "from": "alb", "to": "incorg_api", "y": 290, "label": "Proxy to incorg.incorg.svc", "variant": "emphasis" },
+    { "id": "db-query", "from": "incorg_api", "to": "ob_store", "y": 330, "label": "SELECT OBTransaction6 WHERE account_id", "variant": "emphasis" },
+    { "id": "db-rows", "from": "ob_store", "to": "incorg_api", "y": 370, "label": "Deduplicated rows (SHA-256)", "variant": "return" },
+    { "id": "api-response", "from": "incorg_api", "to": "alb", "y": 430, "label": "200 OK OBReadTransaction6", "variant": "return" },
+    { "id": "ingress-response", "from": "alb", "to": "dhana_ui", "y": 460, "label": "Deliver JSON payload", "variant": "return" },
+    { "id": "render-ui", "from": "dhana_ui", "to": "user", "y": 495, "label": "Render wealth metrics & balances", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "dhana_ui", "from": 160, "to": 500, "type": "frontend" },
+    { "participant": "keycloak", "from": 190, "to": 225, "type": "security" },
+    { "participant": "alb", "from": 250, "to": 465, "type": "cloud" },
+    { "participant": "incorg_api", "from": 290, "to": 435, "type": "backend" },
+    { "participant": "ob_store", "from": 330, "to": 375, "type": "database" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Standardized Contract", "items": ["Fully conforms to UK Open Banking v3.1 Data Specification", "Guarantees cross-app compatibility for Dhana Lakshmi"] },
+    { "dot": "emerald", "title": "Ultra-Low Latency", "items": ["Sub-15ms SQLite WAL query time", "SHA-256 fingerprints ensure absolute idempotency"] }
+  ]
+}

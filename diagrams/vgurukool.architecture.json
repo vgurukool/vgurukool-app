@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Vgurukool Sovereign Platform Architecture",
+    "output": "diagrams/vgurukool-architecture.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "public-traffic",
+        "label": "Public & Learner Traffic",
+        "focus": ["users", "alb", "portal", "ashta_lakshmi", "learnhouse"],
+        "note": "Trace inbound user requests through AWS ALB into the core applications."
+      },
+      {
+        "id": "ai-and-banking",
+        "label": "AI Intelligence & Open Banking",
+        "focus": ["incorg", "litellm", "gemini", "ebs_data", "openbanking_db"],
+        "note": "Follow document ingestion and banking extraction to persistent storage and LLMs."
+      },
+      {
+        "id": "platform-gitops",
+        "label": "Internal Platform & GitOps",
+        "focus": ["devs", "alb", "keycloak", "backstage", "argocd", "pg_db"],
+        "note": "Isolate the internal developer platform, single sign-on, and ArgoCD delivery."
+      }
+    ]
+  },
+  "components": [
+    { "id": "users", "type": "external", "label": "Learners & Users", "sublabel": "Public Browser", "pos": [30, 240], "size": [130, 60] },
+    { "id": "devs", "type": "external", "label": "DevOps & Admins", "sublabel": "Platform Engineers", "pos": [30, 380], "size": [130, 60] },
+    { "id": "alb", "type": "cloud", "label": "AWS ALB / Ingress", "sublabel": "TLS & Routing", "pos": [220, 310], "size": [140, 64], "tag": "HTTPS / ACM" },
+    { "id": "keycloak", "type": "security", "label": "Keycloak SSO", "sublabel": "realm: cnoe", "pos": [430, 130], "size": [140, 64], "tag": "OIDC / PKCE" },
+    { "id": "portal", "type": "frontend", "label": "Vgurukool Portal", "sublabel": "vgurukool.com", "pos": [430, 240], "size": [140, 60] },
+    { "id": "ashta_lakshmi", "type": "frontend", "label": "Ashta Lakshmi", "sublabel": "ashta-lakshmi.vgurukool.com", "pos": [430, 340], "size": [140, 60] },
+    { "id": "learnhouse", "type": "backend", "label": "Learnhouse LMS", "sublabel": "learnhouse.vgurukool.com", "pos": [430, 450], "size": [140, 60] },
+    { "id": "incorg", "type": "backend", "label": "Incorg Service", "sublabel": "FastAPI + Gradio", "pos": [650, 280], "size": [140, 64], "tag": "OpenBanking 3.1" },
+    { "id": "litellm", "type": "backend", "label": "LiteLLM Gateway", "sublabel": "AI Proxy :4000", "pos": [650, 440], "size": [140, 60] },
+    { "id": "gemini", "type": "cloud", "label": "Gemini 2.5 Flash", "sublabel": "Google AI Cloud", "pos": [870, 440], "size": [140, 60] },
+    { "id": "ebs_data", "type": "database", "label": "AWS EBS gp3", "sublabel": "/app/data (10Gi)", "pos": [870, 200], "size": [140, 60] },
+    { "id": "openbanking_db", "type": "database", "label": "OpenBanking Store", "sublabel": "SQLite WAL", "pos": [870, 310], "size": [140, 60] },
+    { "id": "pg_db", "type": "database", "label": "PostgreSQL RDS", "sublabel": "Keycloak / Learnhouse", "pos": [650, 130], "size": [140, 60] },
+    { "id": "backstage", "type": "frontend", "label": "Backstage IDP", "sublabel": "platform.vgurukool.com", "pos": [430, 560], "size": [140, 60] },
+    { "id": "argocd", "type": "backend", "label": "ArgoCD GitOps", "sublabel": "EKS Continuous Delivery", "pos": [650, 560], "size": [140, 60] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "EKS Cluster Services (us-east-2)", "wraps": ["keycloak", "portal", "ashta_lakshmi", "learnhouse", "incorg", "litellm", "ebs_data", "openbanking_db", "pg_db", "backstage", "argocd"] }
+  ],
+  "connections": [
+    { "id": "user-alb", "from": "users", "to": "alb", "label": "HTTPS", "variant": "emphasis" },
+    { "id": "dev-alb", "from": "devs", "to": "alb", "label": "HTTPS / SSO", "variant": "emphasis" },
+    { "id": "alb-keycloak", "from": "alb", "to": "keycloak", "label": "auth", "variant": "security", "fromSide": "top", "toSide": "left" },
+    { "id": "alb-portal", "from": "alb", "to": "portal", "fromSide": "right", "toSide": "left" },
+    { "id": "alb-ashta", "from": "alb", "to": "ashta_lakshmi", "fromSide": "right", "toSide": "left" },
+    { "id": "alb-learnhouse", "from": "alb", "to": "learnhouse", "fromSide": "bottom", "toSide": "left" },
+    { "id": "keycloak-pg", "from": "keycloak", "to": "pg_db", "fromSide": "right", "toSide": "left" },
+    { "id": "ashta-incorg", "from": "ashta_lakshmi", "to": "incorg", "label": "OB v3.1 REST", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "id": "incorg-ebs", "from": "incorg", "to": "ebs_data", "label": "store PDFs", "variant": "dashed", "fromSide": "right", "toSide": "left" },
+    { "id": "incorg-sqlite", "from": "incorg", "to": "openbanking_db", "label": "transactions", "fromSide": "right", "toSide": "left" },
+    { "id": "incorg-litellm", "from": "incorg", "to": "litellm", "fromSide": "bottom", "toSide": "top" },
+    { "id": "litellm-gemini", "from": "litellm", "to": "gemini", "label": "API proxy", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "id": "alb-backstage", "from": "alb", "to": "backstage", "fromSide": "bottom", "toSide": "left" },
+    { "id": "backstage-argocd", "from": "backstage", "to": "argocd", "label": "GitOps sync", "fromSide": "right", "toSide": "left" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Ingress & Edge", "items": ["AWS Application Load Balancer terminates ACM TLS", "Directs traffic to application subdomains"] },
+    { "dot": "emerald", "title": "Core Applications", "items": ["React 18 frontend portals: Sovereign landing, Ashta Lakshmi", "Learnhouse LMS manages courses, cohorts, and multimedia"] },
+    { "dot": "violet", "title": "AI & Open Banking", "items": ["Incorg processes financial statements via Open Banking v3.1", "LiteLLM routes LLM requests to Google Gemini 2.5 Flash"] }
+  ]
+}

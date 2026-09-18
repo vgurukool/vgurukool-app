@@ -1,0 +1,65 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Open Banking Statement Ingestion Pipeline",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "ingestion-happy-path",
+        "label": "Statement Ingestion Flow",
+        "focus": ["user", "upload_ui", "ob_api", "parser", "validator", "ob_store", "summary"],
+        "note": "Trace standard PDF processing from upload to persistent transaction insert."
+      },
+      {
+        "id": "unknown-fallback",
+        "label": "Template Learner & Gemini Fallback",
+        "focus": ["parser", "template_engine", "gemini_vision", "validator"],
+        "note": "See where an unknown bank layout triggers self-learning and Gemini OCR extraction."
+      }
+    ],
+    "output": "diagrams/2_vgurukool_workflow.html"
+  },
+  "lanes": [
+    { "id": "client", "label": "Client & Portal Layer" },
+    { "id": "orchestration", "label": "Incorg Processing Service" },
+    { "id": "extraction", "label": "Parsing & Template Learning" },
+    { "id": "persistence", "label": "Durable Open Banking Store" }
+  ],
+  "phases": [
+    { "id": "intake", "label": "Intake & Auth", "fromCol": 0, "toCol": 1 },
+    { "id": "parsing", "label": "Extraction & Learning", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "storage", "label": "Persistence & Ledger", "fromCol": 4, "toCol": 5, "variant": "dashed" }
+  ],
+  "mainPath": ["user", "upload_ui", "ob_api", "parser", "validator", "ob_store", "summary"],
+  "nodes": [
+    { "id": "user", "lane": "client", "col": 0, "type": "external", "label": "Client / User", "sublabel": "uploads statement", "width": 136 },
+    { "id": "upload_ui", "lane": "client", "col": 1, "type": "frontend", "label": "Dhana Lakshmi UI", "sublabel": "POST /statements", "width": 136 },
+    { "id": "summary", "lane": "client", "col": 5, "type": "frontend", "label": "Updated Ledger", "sublabel": "shows transactions", "width": 136 },
+    { "id": "ob_api", "lane": "orchestration", "col": 1, "type": "backend", "label": "OpenBanking API", "sublabel": "v3.1 endpoint router", "width": 136 },
+    { "id": "validator", "lane": "orchestration", "col": 4, "type": "security", "label": "OB Schema Validator", "sublabel": "OBTransaction6 check", "width": 136 },
+    { "id": "parser", "lane": "extraction", "col": 2, "type": "backend", "label": "Parser Registry", "sublabel": "Chase/BofA/HDFC/CAS", "width": 136 },
+    { "id": "template_engine", "lane": "extraction", "col": 3, "type": "messagebus", "label": "Template Learner", "sublabel": "layout fingerprinting", "width": 136 },
+    { "id": "gemini_vision", "lane": "orchestration", "col": 3, "type": "cloud", "label": "Gemini 2.5 Vision", "sublabel": "multimodal fallback", "width": 136 },
+    { "id": "ob_store", "lane": "persistence", "col": 4, "type": "database", "label": "OpenBankingStore", "sublabel": "SQLite WAL + SHA-256", "width": 136 },
+    { "id": "ebs_archive", "lane": "persistence", "col": 5, "type": "database", "label": "EBS PDF Archive", "sublabel": "/app/data/uploads", "width": 136 }
+  ],
+  "edges": [
+    { "from": "user", "to": "upload_ui", "label": "Selects PDF/CSV" },
+    { "from": "upload_ui", "to": "ob_api", "label": "multipart upload" },
+    { "from": "ob_api", "to": "parser", "label": "inspect layout" },
+    { "from": "parser", "to": "template_engine", "label": "unknown layout", "variant": "dashed" },
+    { "from": "template_engine", "to": "gemini_vision", "label": "OCR & structure", "variant": "dashed" },
+    { "from": "gemini_vision", "to": "validator", "label": "extracted data", "variant": "dashed" },
+    { "from": "parser", "to": "validator", "label": "deterministic parse" },
+    { "from": "validator", "to": "ob_store", "label": "insert transactions" },
+    { "from": "ob_store", "to": "ebs_archive", "label": "archive original", "variant": "dashed" },
+    { "from": "ob_store", "to": "summary", "label": "200 OK JSON" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Deterministic Speed", "items": ["Sub-20ms regex extraction for standard Chase, Wells Fargo, and Indian CAS statements", "Pydantic OBTransaction6 validation"] },
+    { "dot": "violet", "title": "Self-Learning Fallback", "items": ["Unknown formats trigger Template Learner & Gemini Vision OCR", "Templates are automatically cached for subsequent uploads"] },
+    { "dot": "amber", "title": "Deduplication & Safety", "items": ["Transactions hashed with SHA-256 (Date + Amount + Description + Account)", "Idempotent inserts prevent double counting"] }
+  ]
+}
