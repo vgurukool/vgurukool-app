@@ -21,7 +21,8 @@ import {
   Wheat,
   Activity,
   Award,
-  Crown
+  Crown,
+  Library
 } from 'lucide-react';
 import { AIAssistantsSection } from './components/AIAssistantsSection';
 import { VgurukoolLogo } from './components/VgurukoolLogo';
@@ -258,12 +259,16 @@ export default function App({ keycloak, authenticated = false }) {
             <a href="#courses" className="px-3.5 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
               2. Courses &amp; Programs
             </a>
+            <a href="#granth" className="px-3.5 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition flex items-center space-x-1.5">
+              <Library className="w-3.5 h-3.5 text-amber-400" />
+              <span>3. Granth Library</span>
+            </a>
             <a href="#apps" className="px-3.5 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
-              3. The 8 Lakshmi Apps
+              4. The 8 Lakshmi Apps
             </a>
             <a href="#ai-assistants" className="px-3.5 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition flex items-center space-x-1.5">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>4. AI Assistants</span>
+              <span>5. AI Assistants</span>
             </a>
           </nav>
 
@@ -317,7 +322,7 @@ export default function App({ keycloak, authenticated = false }) {
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Welcome to Vgurukool. Evaluate your life through the 8 forms of Vedic wealth, immerse yourself in our 18-week Bhagavad Gita curriculum, explore dedicated Lakshmi apps, and dialogue with interactive Vedic AI assistants.
+            Welcome to Vgurukool. Evaluate your life through the 8 forms of Vedic wealth, immerse yourself in our 18-week Bhagavad Gita curriculum, explore primary scriptures in the Granth Digital Library, and dialogue with sovereign Vedic AI assistants.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -336,18 +341,28 @@ export default function App({ keycloak, authenticated = false }) {
               <span>2. Course Catalog</span>
             </a>
             <a
+              href="https://granth.vgurukool.com"
+              target="_blank"
+              rel="noreferrer"
+              className="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white border border-amber-500/40 hover:border-amber-500 font-bold text-sm transition flex items-center space-x-2 shadow-lg shadow-amber-500/10"
+            >
+              <Library className="w-4 h-4 text-amber-400" />
+              <span>3. Granth Library</span>
+              <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+            </a>
+            <a
               href="#apps"
               className="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white border border-slate-800 font-bold text-sm transition flex items-center space-x-2"
             >
               <Coins className="w-4 h-4 text-emerald-400" />
-              <span>3. The 8 Lakshmi Apps</span>
+              <span>4. The 8 Lakshmi Apps</span>
             </a>
             <a
               href="#ai-assistants"
               className="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white border border-amber-500/40 font-bold text-sm transition flex items-center space-x-2"
             >
               <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>4. AI Assistants</span>
+              <span>5. AI Assistants</span>
             </a>
           </div>
         </div>
@@ -454,7 +469,7 @@ export default function App({ keycloak, authenticated = false }) {
             Course Catalog &amp; Vedic Programs
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto">
-            Authentic, lineage-verified courses delivered through our LearnHouse learning management platform.
+            Authentic, lineage-verified courses delivered through our LearnHouse learning management platform, complemented by primary scriptures in our Granth Digital Library.
           </p>
 
           {/* Filter Pills */}
@@ -511,6 +526,16 @@ export default function App({ keycloak, authenticated = false }) {
               <span>Explore All Courses on LearnHouse</span>
               <ExternalLink className="w-4 h-4" />
             </a>
+            <a
+              href="https://granth.vgurukool.com"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-amber-400 border border-amber-500/40 hover:border-amber-400 font-bold text-sm shadow-md transition"
+            >
+              <Library className="w-4 h-4" />
+              <span>Read Original Texts on Granth</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
 
@@ -556,12 +581,100 @@ export default function App({ keycloak, authenticated = false }) {
         </div>
       </section>
 
-      {/* SECTION 3: THE 8 LAKSHMI APPLICATIONS */}
+      {/* SECTION 3: GRANTH DIGITAL LIBRARY */}
+      <section id="granth" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-900">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-4">
+            <Library className="w-4 h-4 text-amber-400" />
+            <span>Section 3 • Sovereign Digital Archives</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Granth Digital Library
+          </h2>
+          <p className="mt-3 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto">
+            A preserved digital sanctuary for authentic Vedic scriptures, classical commentaries, Upanishads, and philosophical Shastras with full-text search and sovereign reader tools.
+          </p>
+        </div>
+
+        {/* Granth Feature Card */}
+        <div className="bg-gradient-to-br from-slate-900/90 via-slate-900 to-amber-950/30 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-lg bg-amber-500/15 text-amber-400 text-xs font-bold">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>📖 Calibre-Web &amp; Keycloak SSO Powered</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-black text-white leading-snug">
+                Access Primary Shastras in EPUB, PDF &amp; Interactive Reader Formats
+              </h3>
+              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+                Granth houses curated, authentic digital editions of the Vedas, Principal Upanishads, Bhagavad Gita, Brahma Sutras, and classical commentaries. Seamlessly log in with your unified Vgurukool SSO credentials to read, highlight, annotate, and download across all your devices.
+              </p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                <div className="p-3 bg-slate-950/70 border border-slate-800/80 rounded-xl">
+                  <div className="text-xs text-slate-400">Canonical Texts</div>
+                  <div className="text-sm font-bold text-white mt-0.5">Vedas &amp; Shastras</div>
+                </div>
+                <div className="p-3 bg-slate-950/70 border border-slate-800/80 rounded-xl">
+                  <div className="text-xs text-slate-400">Formats</div>
+                  <div className="text-sm font-bold text-white mt-0.5">EPUB, PDF, Kindle</div>
+                </div>
+                <div className="p-3 bg-slate-950/70 border border-slate-800/80 rounded-xl">
+                  <div className="text-xs text-slate-400">Authentication</div>
+                  <div className="text-sm font-bold text-white mt-0.5">Keycloak SSO</div>
+                </div>
+              </div>
+
+              <div className="pt-4 flex flex-wrap items-center gap-4">
+                <a
+                  href="https://granth.vgurukool.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center space-x-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-extrabold text-sm shadow-lg shadow-orange-500/25 transition"
+                >
+                  <Library className="w-4 h-4" />
+                  <span>Launch Granth Digital Library</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right Graphic Preview */}
+            <div className="lg:col-span-5 bg-slate-950/80 border border-slate-800 rounded-2xl p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Granth Core Collections</span>
+                <span className="text-xs font-mono text-amber-400">granth.vgurukool.com</span>
+              </div>
+              <div className="space-y-3 text-xs">
+                {[
+                  { title: 'Prasthana Trayi', desc: 'Bhagavad Gita, 10 Principal Upanishads & Brahma Sutras', badge: 'Canonical' },
+                  { title: 'Veda Samhitas', desc: 'Rig, Sama, Yajur & Atharva Veda sacred hymns and chants', badge: 'Sruti' },
+                  { title: 'Dharmashastra & Artha', desc: 'Kautilya Arthashastra, Manusmriti & ethical governance', badge: 'Smriti' },
+                  { title: 'Sanskrit Grammar & Chandas', desc: 'Paninian Ashtadhyayi, Dhatupatha & Vedic meter studies', badge: 'Vedanga' },
+                ].map((item, i) => (
+                  <div key={i} className="p-3 rounded-xl bg-slate-900/70 border border-slate-800/70 flex items-start justify-between">
+                    <div>
+                      <div className="font-bold text-white text-xs">{item.title}</div>
+                      <div className="text-[11px] text-slate-400 mt-0.5">{item.desc}</div>
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                      {item.badge}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: THE 8 LAKSHMI APPLICATIONS */}
       <section id="apps" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-900">
         <div className="text-center mb-12">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4">
             <Coins className="w-4 h-4 text-emerald-400" />
-            <span>Section 3 • Sovereign App Ecosystem</span>
+            <span>Section 4 • Sovereign App Ecosystem</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             The Eight Lakshmi Applications
@@ -632,7 +745,7 @@ export default function App({ keycloak, authenticated = false }) {
         </div>
       </section>
 
-      {/* SECTION 4: VEDIC AI ASSISTANTS */}
+      {/* SECTION 5: VEDIC AI ASSISTANTS */}
       <AIAssistantsSection />
 
       {/* Footer */}
@@ -647,6 +760,7 @@ export default function App({ keycloak, authenticated = false }) {
           <div className="flex items-center space-x-6">
             <a href="https://ashta-lakshmi.vgurukool.com/" target="_blank" rel="noopener" className="hover:text-slate-300">Ashta Lakshmi Assessment</a>
             <a href="https://learnhouse.vgurukool.com" target="_blank" rel="noreferrer" className="hover:text-slate-300">LearnHouse LMS</a>
+            <a href="https://granth.vgurukool.com" target="_blank" rel="noreferrer" className="hover:text-slate-300">Granth Library</a>
             <a href="https://platform.vgurukool.com/keycloak" target="_blank" rel="noreferrer" className="hover:text-slate-300">Keycloak IAM</a>
           </div>
         </div>
