@@ -24,6 +24,7 @@ import {
   Crown
 } from 'lucide-react';
 import { AIAssistantsSection } from './components/AIAssistantsSection';
+import { VgurukoolLogo } from './components/VgurukoolLogo';
 
 // 8 Lakshmi Apps Definition
 const LAKSHMI_APPS = [
@@ -236,18 +237,15 @@ export default function App({ keycloak, authenticated = false }) {
           <a href="/" className="flex items-center space-x-3.5 group">
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-400 p-0.5 shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform">
               <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
-                <span className="text-xl text-amber-400 font-bold">ॐ</span>
+                <VgurukoolLogo className="w-7 h-7" />
               </div>
             </div>
             <div>
-              <div className="text-xl font-extrabold tracking-tight text-white flex items-center space-x-2">
-                <span>Gurukool</span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-400 border border-amber-500/30 font-medium">
-                  Academy
-                </span>
+              <div className="text-xl font-extrabold tracking-wider text-white">
+                Vgurukool
               </div>
               <p className="text-[11px] text-slate-400 font-medium tracking-wide">
-                Ancient Wisdom • Modern Innovation
+                Ancient Wisdom • Modern Sovereign Intelligence
               </p>
             </div>
           </a>
@@ -319,7 +317,7 @@ export default function App({ keycloak, authenticated = false }) {
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Welcome to Gurukool Academy. Evaluate your life through the 8 forms of Vedic wealth, immerse yourself in our 18-week Bhagavad Gita curriculum, explore dedicated Lakshmi apps, and dialogue with interactive Vedic AI assistants.
+            Welcome to Vgurukool. Evaluate your life through the 8 forms of Vedic wealth, immerse yourself in our 18-week Bhagavad Gita curriculum, explore dedicated Lakshmi apps, and dialogue with interactive Vedic AI assistants.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -641,9 +639,10 @@ export default function App({ keycloak, authenticated = false }) {
       <footer className="border-t border-slate-900 bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-2">
-            <span className="text-amber-400 font-bold text-sm">ॐ Vgurukool</span>
+            <VgurukoolLogo className="w-5 h-5 inline-block" glow={false} />
+            <span className="text-amber-400 font-bold text-sm tracking-wide">Vgurukool</span>
             <span>•</span>
-            <span>Ancient Wisdom &amp; Modern Innovation</span>
+            <span>Ancient Wisdom &amp; Modern Sovereign Intelligence</span>
           </div>
           <div className="flex items-center space-x-6">
             <a href="https://ashta-lakshmi.vgurukool.com/" target="_blank" rel="noopener" className="hover:text-slate-300">Ashta Lakshmi Assessment</a>

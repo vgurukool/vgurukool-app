@@ -1,0 +1,20 @@
+apiVersion: awsblueprints.io/v1alpha1
+kind: ObjectStorage
+metadata:
+  name: vgurukool-web
+  namespace: vgurukool
+  labels:
+    app.kubernetes.io/name: vgurukool
+    app.kubernetes.io/part-of: vgurukool-app
+spec:
+  compositionRef:
+    name: s3bucket.awsblueprints.io
+  resourceConfig:
+    name: vgurukool-web-711387113105
+    region: us-east-2
+    providerConfigName: aws-provider-config
+    deletionPolicy: Orphan
+    tags:
+      app: vgurukool-app
+      environment: production
+      managed-by: crossplane
