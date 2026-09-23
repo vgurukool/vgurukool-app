@@ -25,6 +25,7 @@ import {
   Library
 } from 'lucide-react';
 import { AIAssistantsSection } from './components/AIAssistantsSection';
+import { ContactSection } from './components/ContactSection';
 import { VgurukoolLogo } from './components/VgurukoolLogo';
 
 // 8 Lakshmi Apps Definition
@@ -269,6 +270,9 @@ export default function App({ keycloak, authenticated = false }) {
             <a href="#ai-assistants" className="px-3.5 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition flex items-center space-x-1.5">
               <Sparkles className="w-3.5 h-3.5" />
               <span>5. AI Assistants</span>
+            </a>
+            <a href="#contact" className="px-3.5 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
+              6. Contact Us
             </a>
           </nav>
 
@@ -748,6 +752,9 @@ export default function App({ keycloak, authenticated = false }) {
       {/* SECTION 5: VEDIC AI ASSISTANTS */}
       <AIAssistantsSection />
 
+      {/* SECTION 6: CONTACT US */}
+      <ContactSection />
+
       {/* Footer */}
       <footer className="border-t border-slate-900 bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -762,6 +769,7 @@ export default function App({ keycloak, authenticated = false }) {
             <a href="https://learnhouse.vgurukool.com" target="_blank" rel="noreferrer" className="hover:text-slate-300">LearnHouse LMS</a>
             <a href="https://granth.vgurukool.com" target="_blank" rel="noreferrer" className="hover:text-slate-300">Granth Library</a>
             <a href="https://platform.vgurukool.com/keycloak" target="_blank" rel="noreferrer" className="hover:text-slate-300">Keycloak IAM</a>
+            <a href="#contact" className="text-amber-400 hover:text-amber-300 transition">Contact Us</a>
           </div>
         </div>
       </footer>
