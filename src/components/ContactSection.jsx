@@ -92,9 +92,13 @@ export function ContactSection() {
         })
       });
 
-      const data = await response.json().catch(() => ({}));
+      const contentType = response.headers.get('content-type') || '';
+      let data = {};
+      if (contentType.includes('application/json')) {
+        data = await response.json().catch(() => ({}));
+      }
 
-      if (response.ok && data.success !== false) {
+      if (response.ok && data.success === true) {
         setStatus('success');
         setFormData({
           name: '',
@@ -105,7 +109,7 @@ export function ContactSection() {
         });
       } else {
         setStatus('error');
-        setErrorMessage(data.detail || data.message || 'Unable to send message at this time. Please try again.');
+        setErrorMessage(data.detail || data.message || 'Contact backend service is currently unavailable. Please try again shortly.');
       }
     } catch (err) {
       setStatus('error');
