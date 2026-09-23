@@ -24,6 +24,8 @@ const CATEGORIES = [
   'Technical Support'
 ];
 
+const CONTACT_API_URL = 'https://4vvwvg4r4bz4njortks6aei2ee0gmorq.lambda-url.us-east-2.on.aws/';
+
 export function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
@@ -78,7 +80,7 @@ export function ContactSection() {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(CONTACT_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
