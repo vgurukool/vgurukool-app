@@ -9,7 +9,9 @@ import {
   Activity, 
   Bot, 
   Check, 
-  X 
+  X,
+  Scale,
+  Shield
 } from 'lucide-react';
 import { ContactSection } from './components/ContactSection';
 import { VgurukoolLogo } from './components/VgurukoolLogo';
@@ -76,7 +78,7 @@ const ACHARYAS = {
     tagline: 'Advisor on Artha, Ethical Prosperity & Wealth Stewardship',
     accentColor: '#F59E0B',
     badgeColor: 'rgba(245, 158, 11, 0.2)',
-    desc: 'Guides ethical capital allocation, conscious investment, resource management, and the harmony between material prosperity (Artha) and spiritual righteousness (Dharma).',
+    desc: 'Guides conscious capital allocation, debt elimination (Rina Vimochana), and the harmony between material abundance (Artha) and spiritual righteousness (Dharma). Mentors seekers on healthy capital allocation without reckless greed.',
     sampleQuestion: '"Is it spiritually compromising to actively pursue significant material wealth and equity?"',
     socraticReply: {
       lead: 'Acharya Kubera clarifies:',
@@ -120,16 +122,16 @@ export default function App({ keycloak, authenticated = false }) {
       <div className="bg-gradient-to-r from-amber-950/80 via-amber-900/40 to-slate-950 border-b border-amber-500/20 text-xs py-2 px-4 text-center">
         <span className="inline-flex items-center gap-2 text-amber-200">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <strong className="font-semibold text-amber-300">Gurukul Paradigm Revived:</strong>
-          <span>Moving beyond industrial test-taking to deep inquiry, character, and sovereign AI mentorship.</span>
-          <a href="#pedagogy" className="underline hover:text-white font-medium ml-1">Explore the 3-Step Pedagogy →</a>
+          <strong className="font-semibold text-amber-300">The Living Ethos of Dharma:</strong>
+          <span>Rewarding courage, ethical decisions, and lived action over passive memorized responses.</span>
+          <a href="#dharma-action" className="underline hover:text-white font-medium ml-1">Explore Dharma in Action →</a>
         </span>
       </div>
 
       {/* Header Navigation */}
       <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-950/85 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          {/* Brand Logo - Preserves Original Logo & Clean Brand */}
+          {/* Brand Logo - Preserves Original Lotus Logo & Clean Brand */}
           <a href="/" className="flex items-center space-x-3.5 group">
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-400 p-0.5 shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform">
               <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
@@ -146,27 +148,31 @@ export default function App({ keycloak, authenticated = false }) {
             </div>
           </a>
 
-          {/* Navigation Links (Updated with Section 6 removed) */}
+          {/* Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium text-slate-300">
-            <a href="#why-gurukul" className="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
-              1. The Paradigm
+            <a href="#why-gurukul" className="px-2.5 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
+              1. Paradigm
             </a>
-            <a href="#pedagogy" className="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
-              2. Pedagogy
+            <a href="#dharma-action" className="px-2.5 py-2 rounded-xl text-amber-300 hover:text-white hover:bg-amber-500/10 transition flex items-center gap-1 font-semibold">
+              <Scale className="w-3.5 h-3.5" />
+              <span>2. Dharma in Action</span>
             </a>
-            <a href="#acharyas" className="px-3 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition flex items-center gap-1.5">
+            <a href="#pedagogy" className="px-2.5 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
+              3. Pedagogy
+            </a>
+            <a href="#acharyas" className="px-2.5 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>3. AI Acharyas</span>
+              <span>4. AI Acharyas</span>
             </a>
-            <a href="#ecosystem" className="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
-              4. Sovereign Ecosystem
+            <a href="#ecosystem" className="px-2.5 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
+              5. Ecosystem
             </a>
-            <a href="#ashta-lakshmi" className="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition flex items-center gap-1.5">
+            <a href="#ashta-lakshmi" className="px-2.5 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition flex items-center gap-1">
               <span className="text-emerald-400">☸</span>
-              <span>5. 8-Pillar Flourishing</span>
+              <span>6. 8-Pillars</span>
             </a>
-            <a href="#contact" className="px-3 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
-              6. Contact Us
+            <a href="#contact" className="px-2.5 py-2 rounded-xl hover:text-white hover:bg-slate-800/60 transition">
+              7. Contact
             </a>
           </nav>
 
@@ -220,44 +226,45 @@ export default function App({ keycloak, authenticated = false }) {
           </h1>
 
           <p className="mt-6 text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Modern education became an industrial assembly line of rote memorization, exam anxiety, and fragmented subjects. <strong className="text-white font-semibold">Vgurukool</strong> revives the authentic Gurukul paradigm—integrating critical inquiry, character formation, practical sciences, and 8-fold holistic abundance—personalized through dedicated <strong>Sovereign AI Acharyas</strong>.
+            Modern education became an industrial assembly line of rote memorization, exam anxiety, and fragmented subjects. <strong className="text-white font-semibold">Vgurukool</strong> revives the authentic Gurukul paradigm—where individuals are rewarded for <strong>courageous decisions, ethical action, and embracing difficult challenges</strong> rather than regurgitating memorized answers.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
-              href="#pedagogy"
+              href="#dharma-action"
               className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-extrabold text-sm shadow-xl shadow-orange-500/25 transition flex items-center space-x-2"
             >
-              <BookOpen className="w-4 h-4" />
-              <span>Discover the 3-Step Pedagogy</span>
+              <Scale className="w-4 h-4" />
+              <span>Discover Dharma in Action</span>
+              <span>→</span>
             </a>
             <a
-              href="#acharyas"
+              href="#pedagogy"
               className="px-7 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 hover:border-amber-400 font-bold text-sm transition flex items-center space-x-2 shadow-lg"
             >
-              <Bot className="w-4 h-4 text-amber-400" />
-              <span>Experience Socratic AI Guru</span>
+              <BookOpen className="w-4 h-4 text-amber-400" />
+              <span>3-Step Pedagogy</span>
             </a>
             <a
               href="#ashta-lakshmi"
               className="px-7 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-emerald-400 border border-emerald-500/30 font-bold text-sm transition flex items-center space-x-2"
             >
               <Activity className="w-4 h-4 text-emerald-400" />
-              <span>8-Pillar Life Flourishing Compass</span>
+              <span>8-Pillar Life Compass</span>
             </a>
           </div>
 
           {/* Quick Commitments / Trust Indicators */}
           <div className="mt-14 pt-8 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
             <div className="p-3.5 bg-slate-900/40 rounded-xl border border-slate-800">
+              <div className="text-amber-400 text-xs font-mono">Dharma in Action</div>
+              <div className="text-white font-bold text-sm mt-0.5">Decision Over Memory</div>
+              <div className="text-slate-400 text-[11px] mt-1">Rewarded for ethical courage, trade-offs &amp; character</div>
+            </div>
+            <div className="p-3.5 bg-slate-900/40 rounded-xl border border-slate-800">
               <div className="text-amber-400 text-xs font-mono">Pedagogy</div>
               <div className="text-white font-bold text-sm mt-0.5">Shravana • Manana • Nididhyasana</div>
               <div className="text-slate-400 text-[11px] mt-1">Deep intake, Socratic debate &amp; lived practice</div>
-            </div>
-            <div className="p-3.5 bg-slate-900/40 rounded-xl border border-slate-800">
-              <div className="text-amber-400 text-xs font-mono">Mentorship</div>
-              <div className="text-white font-bold text-sm mt-0.5">Guru-Shishya by AI</div>
-              <div className="text-slate-400 text-[11px] mt-1">1-on-1 personalized to each seeker's Swabhava</div>
             </div>
             <div className="p-3.5 bg-slate-900/40 rounded-xl border border-slate-800">
               <div className="text-emerald-400 text-xs font-mono">Holistic Measure</div>
@@ -265,9 +272,9 @@ export default function App({ keycloak, authenticated = false }) {
               <div className="text-slate-400 text-[11px] mt-1">Not just marks: 8 dimensions of life flourishing</div>
             </div>
             <div className="p-3.5 bg-slate-900/40 rounded-xl border border-slate-800">
-              <div className="text-sky-400 text-xs font-mono">Architecture</div>
-              <div className="text-white font-bold text-sm mt-0.5">Sovereign &amp; Private</div>
-              <div className="text-slate-400 text-[11px] mt-1">CNOE GitOps, Keycloak SSO &amp; local-first data</div>
+              <div className="text-sky-400 text-xs font-mono">Mentorship</div>
+              <div className="text-white font-bold text-sm mt-0.5">Guru-Shishya by AI</div>
+              <div className="text-slate-400 text-[11px] mt-1">1-on-1 personalized to each seeker's Swabhava</div>
             </div>
           </div>
         </div>
@@ -298,85 +305,71 @@ export default function App({ keycloak, authenticated = false }) {
               <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/25 flex items-center justify-center mb-5 text-rose-400">
                 <X className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">The Standardized Test-Taker</h3>
-              <p className="text-sm text-slate-400 mb-6">Optimized for rote reproduction, artificial testing metrics, and short-term compliance.</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Passive Test-Taking Assembly Line</h3>
+              <p className="text-sm text-slate-400 mb-6">Optimized for standardized marks, anxiety, and short-term memorization.</p>
 
               <ul className="space-y-4 text-sm text-slate-300">
                 <li className="flex items-start gap-3">
                   <span className="text-rose-400 font-bold">✕</span>
                   <div>
-                    <strong className="text-white">Rote Memorization over Understanding:</strong>
-                    <p className="text-slate-400 text-xs mt-0.5">Students cram formulas and predigested answers to score marks, only to discard the memory after exams.</p>
+                    <strong className="text-white">Rote Memorization (Kanthastha):</strong>
+                    <p className="text-slate-400 text-xs mt-0.5">Cramming facts for exams, forgotten within 48 hours of results.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-rose-400 font-bold">✕</span>
                   <div>
-                    <strong className="text-white">One-Size-Fits-All Conveyor Belt:</strong>
-                    <p className="text-slate-400 text-xs mt-0.5">Disregards individual temperament (Swabhava) and forces diverse intellects into a rigid percentile ranking.</p>
+                    <strong className="text-white">Fragmented Subject Silos:</strong>
+                    <p className="text-slate-400 text-xs mt-0.5">Math detached from ethics; sciences detached from philosophy and health.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-rose-400 font-bold">✕</span>
                   <div>
-                    <strong className="text-white">Siloed, Disconnected Knowledge:</strong>
-                    <p className="text-slate-400 text-xs mt-0.5">Separates sciences, ethics, mental health, and philosophy, creating highly specialized workers with existential burnout.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-rose-400 font-bold">✕</span>
-                  <div>
-                    <strong className="text-white">Anxiety &amp; Extrinsic Motivation:</strong>
-                    <p className="text-slate-400 text-xs mt-0.5">Fear of failure and grade point competition eclipses the joy of discovery and self-realization.</p>
+                    <strong className="text-white">Zero Practical Life Preparation:</strong>
+                    <p className="text-slate-400 text-xs mt-0.5">Students graduate without knowing how to manage debt, capital runway, or inner stillness.</p>
                   </div>
                 </li>
               </ul>
             </div>
 
             <div className="mt-8 pt-4 border-t border-rose-950/60 text-xs text-rose-300 font-medium">
-              Outcome: High test scores with low discernment, fragile mental health, and ethical vulnerability.
+              Outcome: High scores, brittle character, severe burnout, and life unpreparedness.
             </div>
           </div>
 
-          {/* The Vgurukool Sovereign AI Model */}
+          {/* The Gurukul Way */}
           <div className="bg-gradient-to-br from-amber-950/30 via-slate-900/90 to-slate-950 border border-amber-500/40 rounded-3xl p-8 relative flex flex-col justify-between shadow-2xl shadow-amber-500/5">
             <div className="absolute top-4 right-4 text-amber-400 text-xs font-mono uppercase tracking-wider bg-amber-500/15 px-2.5 py-1 rounded-full border border-amber-500/30">
-              The Vgurukool Way
+              The Gurukul Way
             </div>
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-5 text-amber-400">
+              <div className="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center mb-5 text-amber-400">
                 <Check className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">The Sovereign Holistic Thinker</h3>
-              <p className="text-sm text-slate-400 mb-6">Rooted in self-inquiry, moral discernment (Viveka), experiential mastery, and AI-enabled one-on-one mentorship.</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Awakening the Sovereign Thinker</h3>
+              <p className="text-sm text-slate-400 mb-6">Rooted in dialectical inquiry (Tarka), experiential mastery, and moral discernment (Viveka).</p>
 
               <ul className="space-y-4 text-sm text-slate-300">
                 <li className="flex items-start gap-3">
                   <span className="text-emerald-400 font-bold">✓</span>
                   <div>
-                    <strong className="text-white">Manana &amp; Socratic Dialectics:</strong>
-                    <p className="text-slate-400 text-xs mt-0.5">Students engage in debate (Vada), test premises, analyze counter-arguments, and arrive at first-principles understanding.</p>
+                    <strong className="text-white">Socratic Inquiry (Manana):</strong>
+                    <p className="text-slate-400 text-xs mt-0.5">Testing paradoxes, questioning assumptions, and arriving at internal conviction.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-emerald-400 font-bold">✓</span>
                   <div>
-                    <strong className="text-white">AI-Powered Guru-Shishya Parampara:</strong>
-                    <p className="text-slate-400 text-xs mt-0.5">Sovereign AI Acharyas adapt pedagogy directly to your unique constitution, pacing, learning style, and life duty (Swadharma).</p>
+                    <strong className="text-white">Experiential Mastery (Nididhyasana):</strong>
+                    <p className="text-slate-400 text-xs mt-0.5">Embodying knowledge through daily decision-making, ethical trials, and practical simulation.</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-emerald-400 font-bold">✓</span>
                   <div>
-                    <strong className="text-white">Integration of Para &amp; Apara Vidya:</strong>
-                    <p className="text-slate-400 text-xs mt-0.5">Weaving technical competence, statecraft, and economics with inner spiritual grounding, philosophy, and Ayurvedic vitality.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 font-bold">✓</span>
-                  <div>
-                    <strong className="text-white">Nididhyasana (Lived Mastery &amp; Character):</strong>
-                    <p className="text-slate-400 text-xs mt-0.5">Knowledge is not verified by multiple-choice sheets, but measured across the 8 dimensions of genuine life flourishing (Ashta Lakshmi).</p>
+                    <strong className="text-white">Holistic Flourishing (Ashta Lakshmi):</strong>
+                    <p className="text-slate-400 text-xs mt-0.5">Equilibrium across physical vitality, sacred intellect, courage, and ethical wealth.</p>
                   </div>
                 </li>
               </ul>
@@ -390,11 +383,126 @@ export default function App({ keycloak, authenticated = false }) {
         </div>
       </section>
 
-      {/* SECTION 2: THE 3-STAGE GURUKUL PEDAGOGICAL ENGINE */}
-      <section id="pedagogy" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-900">
+      {/* SECTION 2: DHARMA IN ACTION — REWARDING RIGHT ACTION OVER MEMORIZED RECALL */}
+      <section id="dharma-action" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-900">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-3">
+            <span>Section 2 • The Living Ethos of Dharma</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            Rewarding Right Action &amp; Decisions —<br />
+            <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-300 bg-clip-text text-transparent">
+              Not Just Memorized Responses
+            </span>
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            In the Sanskrit canon, an ancient aphorism warns: <em className="text-amber-300">"Jñānaṁ Bhāraḥ Kriyāṁ Vinā"</em>—knowledge without action is a burden. A seeker in a true Gurukul was never judged by reciting rules from memory, but by <strong className="text-white font-semibold">how they acted under pressure, the ethical decisions they made, and the courage with which they embraced hard challenges.</strong>
+          </p>
+        </div>
+
+        {/* The 3 Pillars of Dharmic Evaluation */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {/* Pillar 1: Decisions Under Pressure */}
+          <div className="bg-gradient-to-b from-slate-900/90 to-slate-950 p-8 rounded-3xl border border-slate-800 hover:border-amber-500/40 transition duration-300 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-2xl mb-5 text-amber-400">
+                <Scale className="w-6 h-6" />
+              </div>
+              <div className="text-xs font-mono text-amber-400 uppercase tracking-wider mb-1">Pillar 01 • Moral Discernment</div>
+              <h3 className="text-xl font-bold text-white mb-3">Ethical Decision Crucibles</h3>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4">
+                Instead of multiple-choice quizzes, learners face high-stakes scenarios: balancing short-term venture profit with stakeholder integrity, navigating truth (*Satya*) in conflict, or prioritizing community welfare over personal gain.
+              </p>
+              <div className="p-3 bg-slate-950/80 rounded-xl border border-slate-800 text-[11px] text-slate-300">
+                <strong className="text-amber-300">Reward Criteria:</strong> Coherence with Dharma, foresight of second-order consequences, and moral backbone under pressure.
+              </div>
+            </div>
+          </div>
+
+          {/* Pillar 2: Courage to Take Hard Challenges */}
+          <div className="bg-gradient-to-b from-slate-900/90 to-slate-950 p-8 rounded-3xl border border-slate-800 hover:border-rose-500/40 transition duration-300 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/25 flex items-center justify-center text-2xl mb-5 text-rose-400">
+                <Shield className="w-6 h-6" />
+              </div>
+              <div className="text-xs font-mono text-rose-400 uppercase tracking-wider mb-1">Pillar 02 • Dhairya &amp; Fortitude</div>
+              <h3 className="text-xl font-bold text-white mb-3">Honoring the Arena of Action</h3>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4">
+                Factory education conditions youth to play it safe—avoiding hard questions to protect a paper GPA. In Vgurukool, seekers are celebrated for <strong class="text-slate-200">stepping into difficult, ambiguous trials</strong>—taking accountability and learning through honorable defeat.
+              </p>
+              <div className="p-3 bg-slate-950/80 rounded-xl border border-slate-800 text-[11px] text-slate-300">
+                <strong className="text-rose-300">Reward Criteria:</strong> Courage to lead in adversity (*Kshatradharma*), persistence (*Dhriti*), and learning without excuses.
+              </div>
+            </div>
+          </div>
+
+          {/* Pillar 3: Character Over Canned Memory */}
+          <div className="bg-gradient-to-b from-slate-900/90 to-slate-950 p-8 rounded-3xl border border-slate-800 hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-2xl mb-5 text-emerald-400">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <div className="text-xs font-mono text-emerald-400 uppercase tracking-wider mb-1">Pillar 03 • Living Standing</div>
+              <h3 className="text-xl font-bold text-white mb-3">Karma-Centric Recognition</h3>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4">
+                Graduation in the Gurukul was granted only when the Guru witnessed the student live their ethics in the world (*Samavartana*). Your choices accumulate into an immutable **Dharmic Integrity Profile** that reflects true character.
+              </p>
+              <div className="p-3 bg-slate-950/80 rounded-xl border border-slate-800 text-[11px] text-slate-300">
+                <strong className="text-emerald-300">Reward Criteria:</strong> Selfless craftsmanship (*Nishkama Karma*), generosity (*Dana*), and equanimity under praise or blame (*Samatvam*).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Comparative Case: The Exam Hall vs The Dharmic Trial */}
+        <div className="bg-gradient-to-r from-amber-950/20 via-slate-900/90 to-slate-950 border border-amber-500/30 rounded-3xl p-6 sm:p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div className="lg:col-span-5 space-y-2">
+              <span className="text-xs font-mono text-amber-400 uppercase tracking-wider">The Fundamental Shift</span>
+              <h4 className="text-2xl font-bold text-white">How Merit is Rewarded</h4>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                AI can easily generate memorized answers in milliseconds. The irreplaceable human quality is <strong className="text-amber-300">the courage to choose what is right over what is convenient.</strong>
+              </p>
+            </div>
+
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              {/* Industrial Factory Model */}
+              <div className="p-4 bg-slate-950/80 border border-rose-900/40 rounded-2xl space-y-2">
+                <div className="text-rose-400 font-bold flex items-center gap-1.5">
+                  <X className="w-4 h-4" />
+                  <span>The Rote Memorization Trap</span>
+                </div>
+                <ul className="text-slate-400 space-y-1.5">
+                  <li>• Repeat the teacher’s definition word-for-word.</li>
+                  <li>• Avoid controversial or difficult challenges.</li>
+                  <li>• Rewarded for multiple-choice guesswork.</li>
+                  <li className="text-rose-300 font-medium pt-1">Result: 4.0 GPA with zero moral spine when money or ego is on the line.</li>
+                </ul>
+              </div>
+
+              {/* Vgurukool Dharmic Model */}
+              <div className="p-4 bg-slate-950/80 border border-emerald-500/40 rounded-2xl space-y-2 shadow-lg shadow-emerald-500/5">
+                <div className="text-emerald-400 font-bold flex items-center gap-1.5">
+                  <Check className="w-4 h-4" />
+                  <span>The Vgurukool Dharmic Model</span>
+                </div>
+                <ul className="text-slate-300 space-y-1.5">
+                  <li>• Navigate real moral &amp; capital crucibles.</li>
+                  <li>• Rewarded for taking initiative on hard quests.</li>
+                  <li>• Socratic review by AI Acharyas on actual actions.</li>
+                  <li className="text-emerald-300 font-medium pt-1">Result: Sovereign discernment, trusted leadership, and unshakable fortitude.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: THE 3-STAGE GURUKUL PEDAGOGICAL ENGINE */}
+      <section id="pedagogy" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-900">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <span>Section 2 • Classical Learning Methodology</span>
+            <span>Section 3 • Classical Learning Methodology</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             The Triad of Deep Cognition
@@ -419,19 +527,19 @@ export default function App({ keycloak, authenticated = false }) {
                 In modern life, reading has decayed into dopamine-fueled skimming. Shravana trains deep listening, unhurried absorption of foundational scriptures, and direct contact with authentic primary sources.
               </p>
 
-              <div className="space-y-2.5 pt-2 border-t border-slate-800">
-                <div className="text-xs font-bold text-slate-200">Supported by Vgurukool:</div>
-                <div className="flex items-center gap-2 text-xs text-slate-400">
+              <div className="space-y-2.5 pt-2 border-t border-slate-800 text-xs">
+                <div className="font-bold text-slate-200">Supported by Vgurukool:</div>
+                <div className="flex items-center gap-2 text-slate-400">
                   <span className="text-amber-400">▸</span>
-                  <span><strong>Granth Digital Library:</strong> Canonical Upanishads, Gita &amp; Sutras</span>
+                  <span><strong className="text-white">Granth Digital Library:</strong> Canonical Upanishads, Gita &amp; Sutras</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-slate-400">
+                <div className="flex items-center gap-2 text-slate-400">
                   <span className="text-amber-400">▸</span>
-                  <span><strong>LearnHouse Academy:</strong> 18-week immersive Gita cohort</span>
+                  <span><strong className="text-white">LearnHouse Academy:</strong> 18-week immersive Gita cohort</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-slate-400">
+                <div className="flex items-center gap-2 text-slate-400">
                   <span className="text-amber-400">▸</span>
-                  <span><strong>Bhasha Vidya:</strong> Classical Sanskrit chanting and meter</span>
+                  <span><strong className="text-white">Bhasha Vidya:</strong> Classical Sanskrit chanting and meter</span>
                 </div>
               </div>
             </div>
@@ -439,7 +547,7 @@ export default function App({ keycloak, authenticated = false }) {
             <div className="mt-8 pt-4 border-t border-slate-800/80">
               <a href="https://granth.vgurukool.com" target="_blank" rel="noreferrer" className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center justify-between">
                 <span>Explore Granth Library</span>
-                <span>→</span>
+                <ChevronRight className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -457,19 +565,19 @@ export default function App({ keycloak, authenticated = false }) {
                 The heart of building thinkers. A seeker is forbidden from blind belief. Through dialectical debate (Tarka), questioning assumptions, and testing paradoxes, knowledge transforms into unshakable conviction.
               </p>
 
-              <div className="space-y-2.5 pt-2 border-t border-amber-900/30">
-                <div className="text-xs font-bold text-amber-200">Supported by Vgurukool:</div>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
+              <div className="space-y-2.5 pt-2 border-t border-amber-900/30 text-xs">
+                <div className="font-bold text-amber-200">Supported by Vgurukool:</div>
+                <div className="flex items-center gap-2 text-slate-300">
                   <span className="text-orange-400">▸</span>
-                  <span><strong>Socratic AI Acharyas:</strong> AI that questions instead of spoon-feeding</span>
+                  <span><strong className="text-white">Socratic AI Acharyas:</strong> AI that questions instead of spoon-feeding</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
+                <div className="flex items-center gap-2 text-slate-300">
                   <span className="text-orange-400">▸</span>
-                  <span><strong>Dialectical Debates:</strong> Challenge philosophies with Brihaspati &amp; Chanakya</span>
+                  <span><strong className="text-white">Dialectical Debates:</strong> Challenge philosophies with Brihaspati &amp; Chanakya</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
+                <div className="flex items-center gap-2 text-slate-300">
                   <span className="text-orange-400">▸</span>
-                  <span><strong>Acharya DeepTutor:</strong> Socratic guidance on tough ethical dilemmas</span>
+                  <span><strong className="text-white">Acharya DeepTutor:</strong> Socratic guidance on tough dilemmas</span>
                 </div>
               </div>
             </div>
@@ -477,12 +585,12 @@ export default function App({ keycloak, authenticated = false }) {
             <div className="mt-8 pt-4 border-t border-amber-900/40">
               <a href="#acharyas" className="text-xs font-bold text-orange-400 hover:text-orange-300 flex items-center justify-between">
                 <span>Try an Acharya Inquiry Session</span>
-                <span>→</span>
+                <ChevronRight className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Stage 3: Nididhyasana */}
+          {/* Stage 3: Nididhyasana (WITH TARGETED NOTE ON SIMULATED CAPITAL SANDBOX) */}
           <div className="bg-slate-900/70 rounded-3xl p-8 border border-slate-800 hover:border-emerald-500/30 transition duration-300 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -491,42 +599,51 @@ export default function App({ keycloak, authenticated = false }) {
               </div>
               <h3 className="text-2xl font-black text-white mb-1">Nididhyasana</h3>
               <div className="text-xs font-semibold text-emerald-300 mb-4">Experiential Mastery &amp; Lived Integration</div>
-              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                Wisdom is only real when embodied in action. Nididhyasana is the habitual internalization of truth into daily life, decision-making, emotional mastery, family stewardship, and ethical wealth generation.
+              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                Wisdom is only real when embodied in action. Nididhyasana is the habitual internalization of truth into daily life, decision-making, emotional mastery, and practical stewardship.
               </p>
 
-              <div className="space-y-2.5 pt-2 border-t border-slate-800">
-                <div className="text-xs font-bold text-slate-200">Supported by Vgurukool:</div>
-                <div className="flex items-center gap-2 text-xs text-slate-400">
+              <div className="space-y-2.5 pt-2 border-t border-slate-800 text-xs">
+                <div className="font-bold text-slate-200">Supported by Vgurukool:</div>
+                <div className="flex items-center gap-2 text-slate-400">
                   <span className="text-emerald-400">▸</span>
-                  <span><strong>Ashta Lakshmi LifeOS:</strong> Daily 8-dimension lifestyle balance audit</span>
+                  <span><strong className="text-white">Ashta Lakshmi LifeOS:</strong> Daily 8-dimension lifestyle balance audit</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-slate-400">
+                <div className="flex items-center gap-2 text-slate-400">
                   <span className="text-emerald-400">▸</span>
-                  <span><strong>Karma Vijaya:</strong> Ethical action and scenario simulation engine</span>
+                  <span><strong className="text-white">Karma Vijaya:</strong> Ethical action and scenario simulation engine</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-slate-400">
+                <div className="flex items-center gap-2 text-slate-400">
                   <span className="text-emerald-400">▸</span>
-                  <span><strong>Granth &amp; Svadhyaya:</strong> Lifelong self-directed scripture study</span>
+                  <span><strong className="text-white">Granth &amp; Svadhyaya:</strong> Lifelong self-directed scripture study</span>
                 </div>
+              </div>
+
+              {/* TARGETED NOTE: DHANA LAKSHMI SIMULATION IN NIDIDHYASANA */}
+              <div className="mt-5 p-3.5 bg-amber-500/10 border border-amber-500/25 rounded-2xl text-xs text-amber-200 leading-relaxed">
+                <div className="flex items-center gap-1.5 font-bold text-amber-300 mb-1">
+                  <span>🪙</span>
+                  <span>Experiential Capital Stewardship:</span>
+                </div>
+                <span>Lived mastery requires understanding the four aims of life (*Purusharthas*). Through the <strong>Dhana Lakshmi educational flight simulator</strong>, students practice capital allocation across Dharma (ethics), Artha (runway), and Kama (living) in a zero-risk sandbox with <em>zero real money</em> before making real-world financial commitments.</span>
               </div>
             </div>
 
             <div className="mt-8 pt-4 border-t border-slate-800/80">
               <a href="#ashta-lakshmi" className="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center justify-between">
                 <span>Audit Your Life Flourishing</span>
-                <span>→</span>
+                <ChevronRight className="w-4 h-4" />
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 3: THE SOVEREIGN AI ACHARYAS */}
+      {/* SECTION 4: THE SOVEREIGN AI ACHARYAS */}
       <section id="acharyas" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-900">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <span>Section 3 • Guru-Shishya Parampara Reimagined</span>
+            <span>Section 4 • Guru-Shishya Parampara Reimagined</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Personal AI Acharyas for Every Seeker
@@ -643,11 +760,11 @@ export default function App({ keycloak, authenticated = false }) {
         </div>
       </section>
 
-      {/* SECTION 4: THE INTEGRATED VGURUKOOL SOVEREIGN ECOSYSTEM */}
+      {/* SECTION 5: THE SOVEREIGN GURUKUL ECOSYSTEM (CLEAN 6-CARD GRID) */}
       <section id="ecosystem" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-900">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <span>Section 4 • Unified Wisdom Architecture</span>
+            <span>Section 5 • Unified Wisdom Architecture</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             The Sovereign Gurukul Ecosystem
@@ -761,17 +878,17 @@ export default function App({ keycloak, authenticated = false }) {
             </div>
           </div>
 
-          {/* 6. Incorg Document Intelligence */}
+          {/* 6. Incorg Document AI */}
           <div className="bg-slate-900/60 rounded-2xl p-6 border border-slate-800 hover:border-teal-500/40 transition flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <span className="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center font-bold text-lg">⚡</span>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Production API</span>
               </div>
-              <h4 className="text-lg font-bold text-white">Incorg &amp; Open Banking</h4>
+              <h4 className="text-lg font-bold text-white">Incorg Document AI</h4>
               <div className="text-xs font-mono text-slate-400 mb-2">incorg.vgurukool.com</div>
               <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                Deterministic document OCR and dense FAISS vector RAG pipeline. Powers financial statement parsing for Dhana Lakshmi's Vedic spending analysis.
+                Deterministic document OCR and dense FAISS vector RAG pipeline. Powers sovereign local document parsing with zero cloud leakage.
               </p>
             </div>
             <div className="pt-3 border-t border-slate-800/80">
@@ -784,11 +901,11 @@ export default function App({ keycloak, authenticated = false }) {
         </div>
       </section>
 
-      {/* SECTION 5: ASHTA LAKSHMI — REPOSITIONED AS 8 DIMENSIONS OF HUMAN FLOURISHING */}
+      {/* SECTION 6: ASHTA LAKSHMI — REPOSITIONED AS 8 DIMENSIONS OF HUMAN FLOURISHING */}
       <section id="ashta-lakshmi" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-slate-900">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <span>Section 5 • The Measure of Genuine Flourishing</span>
+            <span>Section 6 • The Measure of Genuine Flourishing</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Ashta Lakshmi: The 8-Fold Compass
@@ -848,8 +965,19 @@ export default function App({ keycloak, authenticated = false }) {
                 </div>
               </div>
 
-              {/* Single Ashta Lakshmi Portal CTA (Dhana button removed) */}
-              <div className="pt-4 flex flex-wrap gap-4">
+              {/* TARGETED NOTE: DHANA LAKSHMI EDUCATIONAL SIMULATION IN ASHTA LAKSHMI */}
+              <div className="p-4 rounded-2xl bg-slate-950/80 border border-emerald-500/30 flex items-start gap-3.5">
+                <span className="text-2xl mt-0.5">🪙</span>
+                <div className="text-xs space-y-1">
+                  <div className="font-bold text-emerald-300">Note on Dhana Lakshmi (Wealth Stewardship):</div>
+                  <p className="text-slate-300 leading-relaxed">
+                    Within Ashta Lakshmi, material wealth (*Artha*) is never pursued as blind greed—it must be anchored in Dharma. To help seekers and students practice healthy capital allocation without risk, our <strong>Dhana Lakshmi app functions as an educational flight simulator</strong> with <em>zero real money</em>. Learners practice debt elimination (*Rina Vimochana*), runway longevity, and philanthropic tithes (*Dana*) before deploying capital in real life.
+                  </p>
+                </div>
+              </div>
+
+              {/* Single Ashta Lakshmi Portal CTA */}
+              <div className="pt-2 flex flex-wrap gap-4">
                 <a
                   href="https://ashta-lakshmi.vgurukool.com"
                   target="_blank"
@@ -896,7 +1024,7 @@ export default function App({ keycloak, authenticated = false }) {
         </div>
       </section>
 
-      {/* SECTION 6: CONTACT US */}
+      {/* SECTION 7: CONTACT US */}
       <ContactSection />
 
       {/* FOOTER */}
