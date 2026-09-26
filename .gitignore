@@ -8,3 +8,4 @@ dist-ssr
 __pycache__
 *.pyc
 .cache
+backup_pre_gurukul_redesign/
